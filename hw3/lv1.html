@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lv1</title>
+</head>
+<style>
+    html body {
+        display: flex;
+        align-items: center;
+        /* 垂直居中 */
+        justify-content: center;
+        /* 水平居中 */
+        height: 100vh;
+        /* 设置容器高度为视口高度 */
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* 居中和垂直居中 */
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    p {
+        color: red;
+    }
+
+    .box div {
+        height: 40px;
+        width: 249px;
+        background-color: #7c7c82;
+        display: block;
+    }
+
+    .box div:hover {
+        background-color: yellow;
+        font-size: 5px;
+    }
+
+    .li1 {
+        font-size: 20px;
+    }
+
+    .li2 {
+        font-size: 30px;
+    }
+
+    .li3 {
+        font-size: 40px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <table>
+            <tr>
+                <td><a href="#">我不想要默认的下划线</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>字体为红</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>鼠标悬停在我的上面时，我的背景颜色变为黄色，并且字体变小</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li class="li1">我的字体大小是20px</li>
+                        <li class="li2">我的字体大小是30px</li>
+                        <li class="li3">我的字体大小是40px</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>我的字体颜色是红色</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

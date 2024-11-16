@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒盒盒</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        /* 垂直居中 */
+        justify-content: space-between;
+        justify-content: space-around;
+        /* 水平居中 */
+        height: 100%;
+        /* 设置容器高度为视口高度 */
+        column-gap: 28px;
+    }
+
+
+
+    .box1 {
+        border: solid;
+        height: 500px;
+        width: 320px;
+        /* fs为0其他为1时 缩放浏览器时盒子大小不变 */
+        flex-shrink: 0;
+        /* 剩余空间占有 */
+
+
+    }
+
+    .box2 {
+        border: solid;
+        height: 300px;
+        width: 320px;
+        flex-shrink: 1;
+
+
+    }
+
+    .box3 {
+        border: solid;
+        height: 100px;
+        width: 320px;
+        /* 单独指定一个项目与其他的不同 */
+        align-self: start;
+        flex-shrink: 1;
+    }
+
+    .box4 {
+        border: solid;
+        height: 600px;
+        width: 320px;
+        align-self: start;
+        flex-shrink: 1;
+    }
+
+    .box {
+        flex-grow: 1;
+        transition: width 0.3 ease;
+    }
+
+    @media (max-width: 1000px) {
+        .box4 {
+            flex-grow: 2;
+            /* 让第4个盒子的变窄速度更快 */
+        }
+    }
+
+    @media (min-width: 800px) {
+        .box2 {
+            flex-grow: 2;
+            /* 让第2个盒子占满其他元素的所有空间 */
+        }
+
+        .box4 {
+            flex-grow: 1;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box box1">
+            一号盒子
+            <p>我始终保持原大小，不缩放</p>
+        </div>
+        <div class="box box2">
+            二号盒子
+            <p>浏览器界面变宽时，我占满其他元素剩下的所有空间</p>
+        </div>
+        <div class="box box3">
+            三号盒子
+            <p>我和四号盒子的顶部对齐</p>
+        </div>
+        <div class="box box4">
+            四号盒子
+            <p>浏览器界面变窄时，我缩窄的速度要比二，三号盒子快</p>
+        </div>
+    </div>
+</body>
+
+</html>
