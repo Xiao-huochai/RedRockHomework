@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡片</title>
+</head>
+<style>
+    html body {
+        display: flex;
+        align-items: center;
+        /* 垂直居中 */
+        justify-content: center;
+        /* 水平居中 */
+        height: 100vh;
+        /* 设置容器高度为视口高度 */
+    }
+
+    .card {
+        width: 200px;
+        height: 300px;
+        border-radius: 30px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        animation-name: suoxiao;
+        animation-duration: 300ms;
+        animation-play-state: paused;
+
+    }
+
+    .card:hover {
+        animation-play-state: running;
+        background-color: yellow;
+        animation-fill-mode: forwards;
+
+    }
+
+    @keyframes suoxiao {
+        0% {
+            transform: scale(1.0);
+        }
+
+        100% {
+            transform: scale(0.7);
+        }
+    }
+</style>
+
+<body>
+    <div class="card">
+    </div>
+</body>
+
+</html>

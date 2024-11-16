@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建三个对象</title>
+</head>
+<script>
+    let kano1 = new Object();
+    kano1.name = 'zako';
+    kano1.age = 'secret';
+    kano1.love = 'me';
+    //console.log(kano1);
+
+    let kano2 = {
+        name: 'Ray',
+        age: 'secret',
+        love: 'me'
+    }
+    //console.log(kano2);
+
+    function yimodo(name, age, love) {
+        this.name = name
+        this.age = age
+        this.love = love
+        this.sayname = () => {
+            console.log(this.name)
+        }
+    }
+    const p1 = new yimodo('kazari', 'secert', 'me')
+    const p2 = new yimodo('Minato', 'secert', 'me')
+    // yimodo.sayname();
+</script>
+
+<body>
+
+</body>
+
+</html>
