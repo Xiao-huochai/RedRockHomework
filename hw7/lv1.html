@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <head>
+        <title>三个圆移动动画</title>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                /* 将圆圈垂直排列在左边 */
+                width: 200px;
+                /* 容器宽度 */
+                height: 200px;
+                /* 容器高度 */
+            }
+
+            .circle {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                transition: transform 1s ease;
+                /* 动画过渡效果 */
+            }
+
+            .circle1 {
+                background-color: red;
+            }
+
+            .circle2 {
+                background-color: yellow;
+            }
+
+            .circle3 {
+                background-color: blue;
+            }
+
+            .circle.moved {
+                transform: translateX(150px);
+                /* 移动到右边 */
+            }
+        </style>
+    </head>
+
+<body>
+
+    <div class="container">
+        <div class="circle circle1" id="circle1"></div>
+        <div class="circle circle2" id="circle2"></div>
+        <div class="circle circle3" id="circle3"></div>
+    </div>
+
+    <script>
+        function moveCircle(circle, delay) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    circle.classList.add('moved');
+                    resolve();
+                }, delay);
+            });
+        }
+
+        const circle1 = document.getElementById('circle1');
+        const circle2 = document.getElementById('circle2');
+        const circle3 = document.getElementById('circle3');
+        // setTimeout(() => {
+        //     circle1.classList.add('moved');
+
+        //     setTimeout(() => {
+        //         circle2.classList.add('moved');
+
+        //         setTimeout(() => {
+        //             circle3.classList.add('moved');
+
+        //         }, 1000);
+        //     }, 1000);
+        // }, 1000);
+
+        // moveCircle(circle1, 1000)
+        //     .then(() => moveCircle(circle2, 1000))
+        //     .then(() => moveCircle(circle3, 1000))
+        //     .catch(error => console.error("An error occurred:", error));
+
+
+
+        async function animateCircles() {
+            try {
+                await moveCircle(circle1, 1000);
+                await moveCircle(circle2, 1000);
+                await moveCircle(circle3, 1000);
+            } catch (error) {
+                console.error("error", error);
+            }
+        }
+
+        animateCircles().then;
+    </script>
+
+</body>
+
+</html>

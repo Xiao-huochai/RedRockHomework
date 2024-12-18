@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>评论区</title>
+    <style>
+        .comment-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .comment-area-container {
+            background-color: #e3e5e7;
+            height: 100px;
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: space-between;
+            width: 98%;
+            min-width: 200px;
+            padding: 0 14px;
+            border-radius: 15px;
+            flex-grow: 1;
+        }
+
+        .comment-area-input {
+            flex-grow: 1;
+            outline: none;
+            /* 点击时的边框透明 */
+            border: none;
+            /* 隐藏边框 */
+            background-color: transparent;
+            /* 背景透明 */
+            width: 100%;
+            height: 80%;
+        }
+
+        .button-container {
+            border: 1px solid #e3e5e7;
+            border-radius: 15px;
+            height: 20px;
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+        }
+
+        .button {
+            outline: none;
+            /* 点击时的边框透明 */
+            border: none;
+            /* 隐藏边框 */
+            background-color: transparent;
+            /* 背景透明 */
+        }
+
+
+        /* 评论盒子 */
+        .comment-container {
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            /* 垂直排列评论 */
+        }
+
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            /* 垂直对齐顶部 */
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex-grow: 1;
+            /* 占据剩余空间 */
+        }
+
+        .username {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            word-break: break-word;
+            /* 自动换行 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="comment-wrapper">
+        <div class="comment-area-container">
+            <textarea type="text" class="comment-area-input"></textarea>
+        </div>
+        <div class="button-container">
+            <button class="button">
+                <p style="color: black; font-size: 10px;">评论</p>
+            </button>
+        </div>
+    </div>
+    <div class="comment-container">
+
+    </div>
+    <script>
+        const commentInput = document.querySelector('.comment-area-input');
+        const commentContainer = document.querySelector('.comment-container');
+        const commentButton = document.querySelector('.button');
+
+
+        document.addEventListener('DOMContentLoaded', contentSub);
+        // 'DOMContentLoaded': 这是一个文档事件，表示 HTML 文档的 DOM 树已经完全加载并解析完成。
+        commentContainer.addEventListener('contextmenu', deleteComment);
+        // 'contextmenu': 这是一个鼠标事件，表示用户在元素上点击了右键菜单（上下文菜单）。 当用户右击鼠标时，浏览器会触发此事件。
+
+        function contentSub() { // 确保DOM加载完毕再执行
+            commentButton.addEventListener('click', function () {
+                const commentText = commentInput.value.trim(); // 去除前后空格
+
+                if (commentText === "") {
+                    alert("请输入评论内容！");
+                    return;
+                }
+
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment');
+                newComment.innerHTML = `
+    <img class="avatar" src="avatar1.jpg" alt="User Avatar">
+    <div class="comment-content">
+        <span class="username">用户名1</span>
+        <p class="comment-text">${commentText}</p>
+    </div>
+    `;
+                commentContainer.insertBefore(newComment, commentContainer.firstChild); // 将新评论插入到最前面
+                commentInput.value = ''; // 清空输入框
+            });
+        }
+        function deleteComment(e) {
+            e.preventDefault(); // 阻止默认右键菜单
+
+            const commentElement = e.target.closest('.comment'); // 找到最近的 .comment 元素
+
+            if (commentElement) {
+                if (confirm("确定要删除这条评论吗？")) {
+                    commentContainer.removeChild(commentElement);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

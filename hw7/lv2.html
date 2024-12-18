@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container {
+        width: 400px;
+    }
+
+    p {
+        text-indent: 2em;
+        /* 缩进两个字符宽度 */
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>《原神》</h1>
+        <p></p>
+    </div>
+    <script>
+        const pElement = document.querySelector('p');
+        const text = '“太好啦！太好啦！”听妈妈说，我家的电脑终于装好了《原神》！我激动得跳了起来。《原神》这个游戏到底是什么样的呢？爸爸告诉我，这是一个开放世界的冒险游戏，画面精美，充满了幻想和冒险元素。这个虚拟的世界如同一个广袤的大陆，把来自世界各地的玩家聚集在一起。进入游戏，就好像踏上了探索的旅程。可以在地图上找到宝藏，解锁不同的角色，还可以和其他玩家一起完成任务。游戏里的每个角色都有独特的能力和故事，就像交了一群新朋友。 游戏真的有这么好玩吗？带着满满的好奇，我迫不及待地叫妈妈打开电脑，登录了游戏账号。不一会儿，我就进入了提瓦特大陆，眼前是一片广阔的山水景色。我控制着主角旅行者，在一片开满花的草地上奔跑。忽然，我遇到了可爱的派蒙，她漂浮在我身边，带着甜甜的笑容，给我讲解各种游戏技巧。“真有趣！”我不由得赞叹道。妈妈陪我一起玩了一会儿，帮我完成了一些初始任务。我遇到了风之城蒙德，探索了辽阔的璃月，游戏里的每个地方都充满了独特的风情和风土人情。我惊叹于游戏世界的丰富，不仅有精彩的剧情，还有战斗、解谜、探索等各种元素。我感到提瓦特大陆仿佛就在我眼前，奇幻的世界大门向我敞开了。 妈妈还教我如何用游戏里的好友系统。我试着给远在国外的表姐发了一条好友请求，不久她就同意了，还邀请我一起组队探险。站在旁边的爸爸笑着对我说：“过去玩游戏，都是一个人在家里玩，现在你可以和世界各地的小伙伴一起组队，真是太神奇了！”妈妈补充道：“是啊，还能增进交流，认识新朋友呢！”虽然恋恋不舍地退出了游戏，但我的心仍然留在那个奇妙的游戏世界里。爸爸看着我，笑着说：“你今天体验到的，只是游戏里的冰山一角，《原神》还有很多精彩的内容呢！”听完爸爸的话，我对这个新朋友——《原神》，更是充满了兴趣和喜爱。'
+        function iteration(text, pElement) {
+            for (let i = 0; i < text.length; i++) {
+                setTimeout(() => {
+                    pElement.textContent += text[i];
+                }, i * 100)
+                // 每个回调函数执行时间不同导致逐字显示
+            }
+        }
+
+        function promise_function(text, pElement) {
+            function displayChar(char) {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        pElement.textContent += char;
+                        resolve();
+                    }, 100);
+                });
+            }
+
+            async function displayText(text) {
+                for (const char of text) {//遍历的简便方法
+                    await displayChar(char);
+                }
+            }
+
+            displayText(text);
+        }
+        // iteration(text, pElement);
+        promise_function(text, pElement);
+    </script>
+</body>
+
+</html>

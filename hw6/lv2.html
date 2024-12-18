@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lv2</title>
+</head>
+
+
+
+<body>
+    <div>
+        <b>请选择您的爱好</b>
+        <br />
+    </div>
+    <div id="divlist">
+        <input type="checkbox" value="内卷" class="hello">内卷
+        <input type="checkbox" value="疯狂内卷">疯狂内卷
+        <input type="checkbox" value="拼命内卷">拼命内卷
+        <input type="checkbox" value="使劲内卷">使劲内卷
+        <br />
+        <input type="button" value="全选">
+        <input type="button" value="全不选">
+        <input type="button" value="反选">
+    </div>
+
+    <script>
+        const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+        const buttonboxes = Array.from(document.querySelectorAll('input[type="button"]'));
+        buttonboxes[0].addEventListener('click', selectAll);
+        buttonboxes[1].addEventListener('click', deselectAll);
+        buttonboxes[2].addEventListener('click', reverseSelection);
+        function selectAll() {
+            for (let index = 0; index < checkboxes.length; index++) {
+                checkboxes[index].checked = 1;
+            }
+        }
+        function deselectAll() {
+            for (let index = 0; index < checkboxes.length; index++) {
+                checkboxes[index].checked = 0;
+            }
+        }
+        function reverseSelection() {
+            for (let index = 0; index < checkboxes.length; index++) {
+                checkboxes[index].checked = !checkboxes[index].checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

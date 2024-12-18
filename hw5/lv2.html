@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let arr = [1, [2, 3]];
+    let copyArr = [...arr];//用...实现浅拷贝
+    copyArr[0] = 2;
+    copyArr[1][0] = 5;
+    console.log(arr);
+    console.log(copyArr);
+
+    let person1 = {
+        name: 'Jack',
+        age: 20,
+        message: {
+            tl: '500221455',
+            qq: '5110055',
+        },
+    }
+    let p2 = person1;
+    p2.name = 'john';
+    p2.message.qq = '2023558844';//修改p2的值导致指向的同一份数据被修改
+    console.log(person1);
+    console.log(p2);
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

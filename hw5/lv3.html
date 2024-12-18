@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let user = {
+        name: 'nihao',
+        age: '18',
+        hobby: 'csgo',
+    };
+    user2 = structuredClone(user);//调用函数实现深拷贝
+    user2.age = 20;//深拷贝修改值不修改数据源的值
+    console.log(user);
+    console.log(user2);
+</script>
+
+<body>
+
+</body>
+
+</html>

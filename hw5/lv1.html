@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lv1</title>
+    <script>
+        function factorial(n) {
+            let i = 1, s = 1;
+            while (i <= n) {
+                s = s * i;
+                i++;
+            }
+            return s;
+        }
+        console.log(factorial(5));
+
+        function loop(z) {
+            if (z == 1 || z == 0) {
+                return 1;
+            }
+            else {
+                return z * loop(z - 1)
+            }
+        }
+        console.log(loop(5));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

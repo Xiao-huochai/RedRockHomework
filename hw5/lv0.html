@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lv0</title>
+    <script>
+        const person = {
+            name: 'sama',
+            age: 'secret',
+            address: {
+                city: 'ChongQing',
+                area: 'CQUPT'
+            },
+            title: ['student', { year: 22, title: 'NiuBistudent' }]
+        }
+        const { name } = person;
+        // const name = person.name;
+        console.log(name);
+
+        const { age: year } = person;
+        //const year = person.age;
+        console.log(year);
+
+        const { address: { city } } = person;
+        console.log(city);
+
+        const { address: { area: university } } = person;
+        // const university = person.address.area;
+        console.log(university);
+
+        const { title: [title1] } = person;
+        // const title1 = person.title[0];
+        console.log(title1);
+
+        const { title: [, { title: title2 }] } = person;
+        // const title2 = person.title[1].title
+        console.log(title2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
