@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        fetch('https://api.github.com/user/repos',
+            {
+                method: 'POST',
+                headers: {
+                    'Authorization': '',//填入密钥 自己的密钥被git阻止推送了
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: 'tempRepo',
+                    private: false,//公共权限
+                    description: '因作业练习创建'
+                })
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+            }).then(data => {
+                console.log(data);
+            })
+    </script>
+</body>
+
+</html>
