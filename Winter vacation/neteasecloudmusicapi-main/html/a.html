@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .nav {
+            display: flex;
+            width: 500px;
+            height: 50px;
+            background-color: aqua;
+            margin: auto;
+        } */
+
+        .box {
+            width: 500px;
+            /* 超出部分隐藏 */
+            overflow: hidden;
+            /* margin: auto; */
+            display: flex;
+        }
+
+        .content {
+            width: 500px;
+            height: 600px;
+            flex-shrink: 0;
+        }
+
+        #content1 {
+            background-color: paleturquoise;
+        }
+
+        #content2 {
+            background-color: yellowgreen;
+        }
+
+        #content3 {
+            background-color: peru;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav">
+            <a href="#content1" id="nav1">首页</a>
+            <a href="#content2" id="nav2">详情</a>
+            <a href="#content3" id="nav3">个人中心</a>
+        </div>
+    </nav>
+    <section>
+        <div class="box">
+            <div id="content1" class="content">
+                <div>
+                    wocaowocao1</div>
+                <div><img src="" alt="niaho"></div>
+            </div>
+            <div id="content2" class="content">详情</div>
+            <div id="content3" class="content">个人中心</div>
+        </div>
+    </section>
+</body>
+
+</html>

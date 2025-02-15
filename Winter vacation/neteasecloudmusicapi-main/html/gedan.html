@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="rec_box">
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">1</div>
+        </div>
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">2</div>
+        </div>
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">3</div>
+        </div>
+    </div>
+    <script>
+        // 获取所有具有 class="playlist" 的元素
+        const playlists = document.querySelectorAll('.playlist');
+        // 为每个元素绑定点击事件
+        playlists.forEach(function (playlist) {
+            playlist.addEventListener('click', function () {
+                // 获取当前点击的 playlist 的内容
+                const idContent = this.querySelector('.playlistId').textContent;
+                //用歌单id找到对应一排歌曲的id 再用....
+            });
+        });
+    </script>
+</body>
+
+</html>

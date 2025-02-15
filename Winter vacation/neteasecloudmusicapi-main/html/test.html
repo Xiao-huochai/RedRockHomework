@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .song-list {
+        margin-top: 20px;
+    }
+
+    .song-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .song-item img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .top_section {
+        display: flex;
+        align-items: flex-start;
+        /* 顶部对齐 */
+        gap: 20px;
+        /* 图片和右边内容之间的间距 */
+        padding: 20px;
+        border: 1px solid #ccc;
+        height: 260px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .top_section img {
+        width: 210px;
+        height: 210px;
+        border-radius: 8px;
+    }
+
+    .top_section .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .plylist_name {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .brief_introduction {
+        max-height: 50px;
+        overflow-y: auto;
+        font-size: 10px;
+        color: #666;
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+    .author img {
+        width: 30px;
+
+        height: 30px;
+
+        border-radius: 50%;
+    }
+
+    .author .name {
+        font-size: 10px;
+        color: #333;
+    }
+</style>
+
+<body>
+    <div class="top_section">
+        <img src="/img/hao2.png" alt="">
+        <div class="right">
+            <div class="plylist_name">1</div>
+            <div class="brief_introduction">1
+            </div>
+            <div class="author">
+                <img src="" alt="作者">
+                <div class="name">1</div>
+            </div>
+        </div>
+    </div>
+    <div class="song-list" id="songList">
+        <div class="song-item">
+            <div>1</div>
+            <img src="https://p1.music.126.net/a5f-aSBeGGIn25jyNKVCxQ==/109951168925742131.jpg" alt="Kids">
+            <div>Kids</div>
+        </div>
+        <div class="song-item">
+            <div>2</div>
+            <img src="https://p1.music.126.net/hX4tFTT-A4Trn-wYjK-TbA==/109951167196984924.jpg" alt="Segue">
+            <div>Segue</div>
+        </div>
+    </div>
+</body>
+
+</html>

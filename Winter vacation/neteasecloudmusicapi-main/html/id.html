@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐藏内容示例</title>
+    <style>
+        .father {
+            width: 200px;
+            height: 100px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .id {
+            visibility: hidden;
+            /* 内容不可见，但占据空间 */
+            /* 或者使用 opacity: 0; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rec_box">
+        <div class="box playlist">
+            <div class="playlistId">1</div>
+        </div>
+        <div class="box playlist">
+            <div class="playlistId">2</div>
+        </div>
+        <div class="box playlist">
+            <div class="playlistId">3</div>
+        </div>
+        <div class="box playlist">
+            <div class="playlistId">4</div>
+        </div>
+        <div class="box playlist">
+            <div class="playlistId">5</div>
+        </div>
+        <div class="box playlist">
+            <div class="playlistId">6</div>
+        </div>
+    </div>
+    <script>
+        // 获取所有具有 class="playlist" 的元素
+        const playlists = document.querySelectorAll('.playlist');
+
+        // 为每个元素绑定点击事件
+        playlists.forEach(function (playlist) {
+            playlist.addEventListener('click', function () {
+                // 获取当前点击的 playlist 的内容
+                let idContent = this.textContent;
+
+                // document.querySelector('.playlistId')
+                // 打印结果（或执行其他操作）
+                console.log('ID 内容:', idContent);
+            });
+        });
+    </script>
+</body>
+
+</html>

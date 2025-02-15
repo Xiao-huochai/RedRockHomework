@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // fetch('http://localhost:3000/playlist/catlist').then(data => data.json()).then(data => console.log(data));
+        //歌单广场 更多分类
+        // fetch('http://localhost:3000/playlist/hot').then(data => data.json()).then(data => console.log(data));
+        // 热门歌单分类 10 歌单广场下面 歌单上面的可点击分类
+        //fetch('http://localhost:3000/personalized').then(data => data.json()).then(data => console.log(data));
+        //歌单广场推荐歌单
+
+
+        //fetch('http://localhost:3000/playlist/track/all?id=?').then(data => data.json()).then(data => console.log(data));
+        //获取歌单歌曲的所有id 获取某首歌的id 如data.songs[0].al.id获得歌曲id data.songs[0].al.name获得歌曲名称  data.songs[0].al.picUrl获得歌曲图片
+
+        //fetch('http://localhost:3000/song/url?id=2013823506').then(data => data.json()).then(data => console.log(data));
+        //获取某首歌的url 例子：data.data[0].url
+
+        //song/detail ? ids = 347230
+        //fetch('http://localhost:3000/song/detail?ids=347230').then(data => data.json()).then(data => console.log(data));
+        //fetch('http://localhost:3000/playlist/detail?id=2307122874').then(data => data.json()).then(data => console.log(data));
+        // fetch(`http://localhost:3000/search?keywords=海阔天空`).then(data => data.json()).then(data => console.log(data));
+
+        // const params = new URLSearchParams({
+        //     type: '1002',
+        //     keywords: 'AZLANE'
+        // });
+
+        // const url = `http://localhost:3000/search?${params.toString()}`;
+
+        // fetch(url)
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+        //     .catch(error => console.error('Error:', error));
+        //fetch('http://localhost:3000/personalized').then(data => data.json()).then(data => console.log(data));
+        fetch('http://localhost:3000/user/account').then(data => data.json()).then(data => console.log(data))
+    </script>
+</body>
+
+</html>

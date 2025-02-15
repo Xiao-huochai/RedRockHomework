@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索框热搜榜</title>
+    <style>
+        .search-input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .hot-search-box {
+            border-radius: 8px;
+            display: none;
+            /* 默认隐藏 */
+            position: absolute;
+            /* 绝对定位 */
+            width: 400px;
+            height: 530px;
+            border: 1px solid #ccc;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            /* 背景色 */
+            z-index: 10;
+            /* 确保盒子在最上层 */
+            overflow-y: auto;
+            /* 内容过多时显示滚动条 */
+            scrollbar-width: none;
+            /* 隐藏滚动条（Firefox） */
+        }
+
+        /* 隐藏滚动条（Chrome、Edge、Safari） */
+        .hot-search-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hot-search-box p {
+            margin: 20px 0 10px 10px;
+            font-size: 16px;
+            color: #d2d4d8;
+        }
+
+        .hot-search-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .hot-search-list li {
+            padding: 20px;
+            font-size: 14px;
+            display: flex;
+            /* 使用 flex 布局 */
+            align-items: center;
+            /* 垂直居中 */
+        }
+
+        .hot-search-list li:nth-child(-n+3) span:first-child {
+            color: red;
+            font-weight: bold;
+            /* 加粗 */
+        }
+
+        .hot-search-list li:nth-child(n+4) span:first-child {
+            color: gray;
+        }
+
+        /* 热搜项的文字颜色 */
+        .hot-search-list li span:last-child {
+            color: #3c4559;
+            margin-left: 15px;
+            /* 文字与数字之间的间距 */
+        }
+
+        .hot-search-list li:hover {
+            background-color: #f2f3f4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" class="search-input" placeholder="请搜索">
+    <div class="hot-search-box">
+        <p>热搜榜</p>
+        <ul class="hot-search-list">
+        </ul>
+    </div>
+
+    <script>
+        // 获取元素
+        const searchInput = document.querySelector('.search-input');
+        const hotSearchBox = document.querySelector('.hot-search-box');
+        const hotSearchList = document.querySelector('.hot-search-list')
+        fetch(`http://localhost:3000/search/hot/detail`).then(data => data.json()).then(data => {
+            addLi(data.data.length);
+            const lies = hotSearchList.querySelectorAll('li')
+            lies.forEach((li, index) => {
+                const secondSpan = li.querySelector('span:nth-child(2)');
+                secondSpan.textContent = data.data[index].searchWord;
+                li.addEventListener('click', () => {
+                    searchInput.value = secondSpan.textContent;
+                    hotSearchBox.style.display = 'none';
+                })
+            })
+        })
+        // 当输入框获得焦点时显示热搜榜
+        searchInput.addEventListener('focus', () => {
+            hotSearchBox.style.display = 'block';
+        });
+
+        // 当输入框失去焦点时隐藏热搜榜
+        // searchInput.addEventListener('blur', () => {
+        //     hotSearchBox.style.display = 'none';
+        // });
+
+
+
+        function addLi(data) {
+            for (let index = 0; index < data; index++) {
+                const li = document.createElement('li');
+                const span_f = document.createElement('span');
+                const span_s = document.createElement('span');
+                const a = document.createElement('a');
+                a.href = '#11';
+                span_f.textContent = index + 1;
+                a.appendChild(span_f);
+                a.appendChild(span_s);
+                li.appendChild(a);
+                hotSearchList.appendChild(li);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

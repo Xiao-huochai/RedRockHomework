@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        .rec_box {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 150px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .box img {
+            width: 100%;
+            height: auto;
+        }
+
+        .song-list {
+            margin-top: 20px;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .song-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls button {
+            margin-right: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .active {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rec_box">
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">1</div>
+        </div>
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">2</div>
+        </div>
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">3</div>
+        </div>
+    </div>
+
+    <div class="song-list" id="songList"></div>
+
+    <div class="controls">
+        <button id="prevBtn">上一首</button>
+        <button id="playPauseBtn">播放</button>
+        <button id="nextBtn">下一首</button>
+    </div>
+
+    <input type="range" id="progressBar" class="progress-bar" min="0" max="100" value="0">
+
+    <audio id="audioPlayer"></audio>
+
+    <script>
+        const playlists = document.querySelectorAll('.playlist');
+        const songList = document.getElementById('songList');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+
+        let currentPlaylist = [];
+        let currentIndex = 0;
+
+        // 绑定歌单点击事件
+        playlists.forEach(playlist => {
+            playlist.addEventListener('click', function () {
+                const idContent = this.querySelector('.playlistId').textContent;
+                fetch(`http://localhost:3000/playlist/track/all?id=${idContent}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        currentPlaylist = data.songs;
+                        renderSongList(currentPlaylist);
+                    });
+            });
+        });
+
+        // 渲染歌曲列表
+        function renderSongList(songs) {
+            songList.innerHTML = '';
+            songs.forEach((song, index) => {
+                const songItem = document.createElement('div');
+                songItem.className = 'song-item';
+                songItem.innerHTML = `
+                    <div>${index + 1}</div>
+                    <img src="${song.al.picUrl}" alt="${song.name}">
+                    <div>${song.name}</div>
+                `;
+                songItem.addEventListener('click', () => playSong(index));
+                songList.appendChild(songItem);
+            });
+        }
+
+        // 播放指定索引的歌曲
+        function playSong(index) {
+            const song = currentPlaylist[index];
+            if (song) {
+                fetch(`http://localhost:3000/song/url?id=${song.id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        audioPlayer.src = data.data[0].url;
+                        audioPlayer.play();
+                        currentIndex = index;
+                        updateActiveSong();
+                        updatePlayPauseButton(); // 更新按钮状态
+                    });
+            }
+        }
+
+        // 更新当前播放歌曲的高亮状态
+        function updateActiveSong() {
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // 更新播放/暂停按钮的显示
+        function updatePlayPauseButton() {
+            if (audioPlayer.paused) {
+                playPauseBtn.textContent = '播放';
+            } else {
+                playPauseBtn.textContent = '暂停';
+            }
+        }
+
+        // 播放/暂停按钮点击事件
+        playPauseBtn.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+            updatePlayPauseButton(); // 更新按钮状态
+        });
+
+        // 上一首按钮点击事件
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                playSong(currentIndex - 1);
+            }
+        });
+
+        // 下一首按钮点击事件
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < currentPlaylist.length - 1) {
+                playSong(currentIndex + 1);
+            }
+        });
+
+        // 自动播放下一首
+        audioPlayer.addEventListener('ended', () => {
+            if (currentIndex < currentPlaylist.length - 1) {
+                playSong(currentIndex + 1);
+            }
+        });
+
+        // 更新进度条
+        audioPlayer.addEventListener('timeupdate', () => {
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressBar.value = progress;
+        });
+
+        // 拖动进度条跳转播放时间
+        progressBar.addEventListener('input', () => {
+            const time = (progressBar.value / 100) * audioPlayer.duration;
+            audioPlayer.currentTime = time;
+        });
+    </script>
+</body>
+
+</html>

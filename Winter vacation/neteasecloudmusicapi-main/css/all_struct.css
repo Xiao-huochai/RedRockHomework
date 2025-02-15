@@ -1,0 +1,111 @@
+ body,
+ html {
+     min-width: 1310px;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+ }
+
+ a {
+     text-decoration: none;
+ }
+
+ .container {
+     display: flex;
+     flex-direction: column;
+     min-height: 100%;
+ }
+
+ .top-section {
+     display: flex;
+ }
+
+ .left {
+     width: 250px;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .right {
+     flex: 1;
+     /* 自动占满剩余空间 */
+     min-width: 1060px;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .top {
+     height: 85px;
+     /* border: 1px solid #ccc; */
+     overflow: hidden;
+ }
+
+ .bottom {
+     max-height: calc(100vh - 150px);
+     /* 100vh - top高度 - footer高度 */
+     overflow-y: auto;
+     /* 当内容溢出时添加滚动条 */
+     /* border: 1px solid #ccc; */
+ }
+
+ .footer {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     height: 0px;
+     background-color: lightyellow;
+     border: 1px solid #ccc;
+ }
+
+ /* 可选样式 */
+ .left .top {
+     background-image: url(/img/logo.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-color: #f0f3f6;
+ }
+
+ .left .bottom {
+     display: flex;
+     /* 启用 Flexbox */
+     /* justify-content: center; */
+     /* 水平居中 */
+     align-items: center;
+     /* 垂直居中 */
+     flex-direction: column;
+     /* 添加 max-height 并设置较大的值，例如 80vh */
+     background-color: #f0f3f6;
+ }
+
+ .right .top {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0 50px;
+     /* background-color: #f7f9fc; */
+ }
+
+ .right .bottom {
+     height: 100vh;
+     background-color: #f7f9fc;
+     flex-shrink: 0;
+ }
+
+ .page {
+     width: 1385px;
+     flex-shrink: 0;
+     /* height: 100vh; */
+ }
+
+ /* 默认隐藏滚动条 */
+ .bottom::-webkit-scrollbar {
+     width: 0;
+     /* 隐藏默认滚动条 */
+ }
+
+ .page_box {
+     width: 1385px;
+     overflow: hidden;
+     display: flex;
+     /* height: 250vh; */
+ }

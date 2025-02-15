@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        .rec_box {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 150px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .box img {
+            width: 100%;
+            height: auto;
+        }
+
+        .song-list {
+            margin-top: 20px;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .song-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="song1">
+            <div>
+                wocaowocao1
+                <img src="" alt="img">
+            </div>
+        </div>
+        <div class="song2">
+            <div>
+                wocaowocao2
+                <img src="" alt="img">
+            </div>
+        </div>
+        <div class="song3">
+            <div>
+                wocaowocao3
+                <img src="" alt="img">
+            </div>
+        </div>
+        <div class="song4">
+            <div>
+                wocaowocao4
+                <img src="" alt="img">
+            </div>
+        </div>
+    </div>
+    <div class="rec_box">
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">1</div>
+        </div>
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">5</div>
+        </div>
+        <div class="box playlist">
+            <div class="top"></div>
+            <img src="" alt="">
+            <div class="bottom"></div>
+            <div class="playlistId">256788</div>
+        </div>
+    </div>
+
+    <div class="song-list" id="songList"></div>
+
+    <div class="controls">
+        <button id="prevBtn">上一首</button>
+        <button id="playPauseBtn">播放/暂停</button>
+        <button id="nextBtn">下一首</button>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+
+    <script>
+        const playlists = document.querySelectorAll('.playlist');
+        const songList = document.getElementById('songList');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentPlaylist = [];
+        let currentIndex = 0;
+
+        playlists.forEach(playlist => {
+            playlist.addEventListener('click', function () {
+                const idContent = this.querySelector('.playlistId').textContent;
+                fetch(`http://localhost:3000/playlist/track/all?id=${idContent}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        currentPlaylist = data.songs;
+                        renderSongList(currentPlaylist);
+                    });
+            });
+        });
+
+        function renderSongList(songs) {
+            songList.innerHTML = '';
+            songs.forEach((song, index) => {
+                const songItem = document.createElement('div');
+                songItem.className = 'song-item';
+                songItem.innerHTML = `
+                    <div>${index + 1}</div>
+                    <img src="${song.al.picUrl}" alt="${song.name}">
+                    <div>${song.name}</div>
+                `;
+                songItem.addEventListener('click', () => playSong(index));
+                songList.appendChild(songItem);
+            });
+        }
+
+        function playSong(index) {
+            const song = currentPlaylist[index];
+            if (song) {
+                fetch(`http://localhost:3000/song/url?id=${song.id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        audioPlayer.src = data.data[0].url;
+                        audioPlayer.play();
+                        currentIndex = index;
+                        updateActiveSong();
+                    });
+            }
+        }
+
+        function updateActiveSong() {
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                playSong(currentIndex - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < currentPlaylist.length - 1) {
+                playSong(currentIndex + 1);
+            }
+        });
+
+        audioPlayer.addEventListener('ended', () => {
+            if (currentIndex < currentPlaylist.length - 1) {
+                playSong(currentIndex + 1);
+            }
+        });
+    </script>
+</body>
+
+</html>

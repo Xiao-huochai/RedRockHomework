@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面布局</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .top {
+            display: flex;
+            height: 20%;
+            background-color: #f4f4f4;
+        }
+
+        .top-left,
+        .top-right {
+            flex: 1;
+            border: 1px solid #ccc;
+        }
+
+        .middle {
+            display: flex;
+            height: 60%;
+        }
+
+        .middle-left,
+        .middle-right {
+            flex: 1;
+            border: 1px solid #ccc;
+            position: relative;
+            /* 为按钮定位做准备 */
+        }
+
+        .bottom {
+            height: 20%;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin: 10px;
+        }
+
+        /* 将按钮定位到右上角 */
+        #change-content {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        #return-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="top-left">上左</div>
+        <div class="top-right">上右</div>
+    </div>
+    <div class="middle">
+        <div class="middle-left">中左</div>
+        <div class="middle-right" id="middle-right">
+            <button id="change-content">切换内容</button>
+        </div>
+    </div>
+    <div class="bottom">下</div>
+
+    <script>
+        // 获取中间右边的盒子
+        const middleRight = document.getElementById('middle-right');
+        const changeContentButton = document.getElementById('change-content');
+
+        // 保存原始内容
+        const originalContent = middleRight.innerHTML;
+
+        // 切换内容
+        changeContentButton.addEventListener('click', () => {
+            middleRight.innerHTML = `
+                <div>这是新的内容</div>
+                <button id="return-button">返回</button>
+            `;
+
+            // 添加返回按钮的事件监听器
+            const returnButton = document.getElementById('return-button');
+            returnButton.addEventListener('click', () => {
+                middleRight.innerHTML = originalContent;
+                // 重新绑定切换内容按钮的事件
+                document.getElementById('change-content').addEventListener('click', changeContent);
+            });
+        });
+
+        // 切换内容的函数
+        function changeContent() {
+            middleRight.innerHTML = `
+                <div>这是新的内容</div>
+                <button id="return-button">返回</button>
+            `;
+
+            // 添加返回按钮的事件监听器
+            const returnButton = document.getElementById('return-button');
+            returnButton.addEventListener('click', () => {
+                middleRight.innerHTML = originalContent;
+                // 重新绑定切换内容按钮的事件
+                document.getElementById('change-content').addEventListener('click', changeContent);
+            });
+        }
+    </script>
+</body>
+
+</html>

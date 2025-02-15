@@ -1,0 +1,103 @@
+.search {
+    background-color: #e3e5e7;
+    height: 40px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 227.5px;
+    padding: 0 14px;
+    border-radius: 5px;
+}
+
+.search-input {
+    flex-grow: 1;
+    outline: none;
+    /* 点击时的边框透明 */
+    border: none;
+    /* 隐藏边框 */
+    background-color: transparent;
+    /* 背景透明 */
+}
+
+button {
+    border-radius: 5px;
+    outline: none;
+    /* 点击时的边框透明 */
+    border: none;
+    /* 隐藏边框 */
+    background-color: transparent;
+    /* 背景透明 */
+}
+
+.top-right-box {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-right-box>:nth-child(-n+3) {
+    margin-right: 10px;
+}
+
+.top-left-box {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-left-box>:nth-child(-n+3) {
+    margin-left: 10px;
+}
+
+.return {
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #f7f9fc;
+    height: 40px;
+    border: solid 1px #e2e5e9;
+    transition: background-color 0.3s;
+}
+
+.sing {
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #f7f9fc;
+    height: 40px;
+    border: solid 1px #e2e5e9;
+    transition: background-color 0.3s;
+}
+
+.return:hover {
+    background-color: #e2e5e9;
+}
+
+.sing:hover {
+    background-color: #e2e5e9;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 240px;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.username {
+    font-size: 15px;
+    color: #333;
+}
+
+.sing-btn>ion-icon {
+    font-size: 20px;
+}
