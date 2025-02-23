@@ -1,4 +1,17 @@
 // 获取元素
+//'../'表示当前目录上一级目录
+import './music_get_play.js';
+import './playlist_square.js'
+import './carousel.js';
+import '../css/all_struct.css';
+import '../css/bottom_left.css';
+import '../css/top_right.css';
+import '../css/bottom_right.css';
+import '../css/bottom_right_ps.css';
+import '../css/bottom_right_inplaylist.css';
+import '../css/footer.css';
+import '../css/hot_search_box.css';
+import '../css/qrCode.css';
 const searchInput = document.querySelector('.search-input');
 const hotSearchBox = document.querySelector('.hot-search-box');
 const hotSearchList = document.querySelector('.hot-search-list');

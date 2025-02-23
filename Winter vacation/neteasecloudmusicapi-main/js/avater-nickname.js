@@ -1,4 +1,3 @@
-
 // const avatarElement = document.getElementById('avatar');
 // const usernameElement = document.getElementById('username');
 // function setUserInfo(avatarUrl, username) {

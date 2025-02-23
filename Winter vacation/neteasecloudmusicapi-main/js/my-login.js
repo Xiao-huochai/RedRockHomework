@@ -1,5 +1,5 @@
 //const qrImg = document.getElementById('qrImg');
-
+import './avater-nickname.js';
 // 获取 key
 function getQRKey() {
     return fetch(`http://localhost:3000/login/qr/key?timestamp=${Date.now()}`)

@@ -21,8 +21,8 @@
 
 // });
 
-
-
+import './music_get_play.js'//'./'表示当前目录
+import './playlists-box.js'
 
 let recBox = document.querySelector('.playlist_square_rec_box ');
 //let recBox = document.querySelector('.playlist_square ');

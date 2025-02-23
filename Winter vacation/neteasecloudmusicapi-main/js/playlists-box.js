@@ -1,4 +1,5 @@
 // 获取所有 .box 元素
+import './my-login.js';
 const boxes = document.querySelectorAll('.rec_box .box');
 fetch('http://localhost:3000/recommend/resource').then(data => data.json()).then(data => {
     // 遍历每个 .box 
