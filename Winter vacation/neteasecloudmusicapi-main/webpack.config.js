@@ -29,6 +29,7 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const devConfig = require("./webpack.dev.js");
 const prodConfig = require("./webpack.prod.js");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const commonConfig = {
     entry: "./js/search.js",
     output: {
@@ -47,6 +48,20 @@ const commonConfig = {
                 exclude: "/node_modules/",
             },
         ],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "webpack 案例",
+            template: './html/main.html',
+        })
+    ],
+    devServer: {
+        static: {
+            directory: path.join(__dirname, "/dist"),
+        },
+        port: 3000,
+        hot: true,
+        open: false,
     },
 };
 

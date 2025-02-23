@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- <link rel="stylesheet" href="/css/all_struct.css">
+    <link rel="stylesheet" href="/css/bottom_left.css">
+    <link rel="stylesheet" href="/css/top_right.css">
+    <link rel="stylesheet" href="/css/bottom_right.css">
+    <link rel="stylesheet" href="/css/bottom_right_ps.css">
+    <link rel="stylesheet" href="/css/bottom_right_inplaylist.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/hot_search_box.css">
+    <link rel="stylesheet" href="/css/qrCode.css"> -->
+    <style>
+    </style>
+    <script defer src="main.js"></script>
+</head>
+
+<body>
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>请使用手机扫描二维码登录</p>
+            <img id="qrImg" src="" alt="QR Code" />
+        </div>
+    </div>
+    <div class="container">
+        <div class="top-section">
+            <div class="left">
+                <div class="top"></div>
+                <div class="bottom">
+                    <div class="vertical-navbar">
+                        <div class="box"><a href="#home" class="active">为我推荐</a></div>
+                        <div class="box"><a href="#home">云音乐精选</a></div>
+                        <div class="box"><a href="#home">播客</a></div>
+                        <div class="box"><a href="#home">私人漫游</a></div>
+                        <div class="box"><a href="#home">社区</a></div>
+                    </div>
+                    <div class="vertical-navbar">
+                        <div class="box"><a href="#home">我喜欢的音乐</a></div>
+                        <div class="box"><a href="#home">最近播放</a></div>
+                        <div class="box"><a href="#home">我的播客</a></div>
+                        <div class="box"><a href="#home">下载管理</a></div>
+                        <div class="box"><a href="#home">本地音乐</a></div>
+                        <div class="box"><a href="#home">我的音乐云盘</a></div>
+
+                    </div>
+                    <div class="vertical-navbar">
+                        <div class="box"><a href="#home">为我推荐</a></div>
+                        <div class="box"><a href="#home">云音乐精选</a></div>
+                        <div class="box"><a href="#home">播客</a></div>
+                        <div class="box"><a href="#home">私人漫游</a></div>
+                        <div class="box"><a href="#home">社区</a></div>
+                    </div>
+                    <div class="vertical-navbar">
+                        <div class="box"><a href="">创建的歌单</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="top">
+                    <span class="top-right-box">
+                        <a class="return change_to_home" href="#home">
+                            <button class="return-button">
+                                < </button>
+                        </a>
+                        <span class="search">
+                            <a href="#search_page">
+                                <button class="search-button">
+                                    <span class="nav-search-btn"><svg width="17" height="17" viewBox="0 0 17 17"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M16.3451 15.2003C16.6377 15.4915 16.4752 15.772 16.1934 16.0632C16.15 16.1279 16.0958 16.1818 16.0525 16.2249C15.7707 16.473 15.4456 16.624 15.1854 16.3652L11.6848 12.8815C10.4709 13.8198 8.97529 14.3267 7.44714 14.3267C3.62134 14.3267 0.5 11.2314 0.5 7.41337C0.5 3.60616 3.6105 0.5 7.44714 0.5C11.2729 0.5 14.3943 3.59538 14.3943 7.41337C14.3943 8.98802 13.8524 10.5087 12.8661 11.7383L16.3451 15.2003ZM2.13647 7.4026C2.13647 10.3146 4.52083 12.6766 7.43624 12.6766C10.3517 12.6766 12.736 10.3146 12.736 7.4026C12.736 4.49058 10.3517 2.1286 7.43624 2.1286C4.50999 2.1286 2.13647 4.50136 2.13647 7.4026Z"
+                                                fill="currentColor"></path>
+                                        </svg></span>
+                                </button>
+                            </a>
+                            <input type="text" class="search-input" placeholder="请搜索">
+                        </span>
+                        <span class="sing"><button class="sing-btn"><ion-icon
+                                    name="mic-outline"></ion-icon></button></span>
+                        <div class="hot-search-box">
+                            <p>热搜榜</p>
+                            <ul class="hot-search-list">
+                            </ul>
+                        </div>
+                    </span>
+                    <span class="top-left-box">
+                        <span class="account">
+                            <img id="avatar" class="avatar" src="" alt="用户头像">
+                            <span id="username" class="username">用户名</span>
+                        </span>
+                        <span class="system">三按钮</span>
+                        <span class="window-controll">三按钮</span>
+                    </span>
+                </div>
+                <!-- 右下 -->
+                <div class="bottom ">
+                    <div class="page_box">
+                        <div class="bottom page" id="home">
+                            <div class="carousel">
+                                <div class="slider">
+                                    <div class="slider-wrapper">
+                                        <!-- 图片将通过 JavaScript 动态添加到这里 -->
+                                    </div>
+                                    <div class="dots">
+                                        <!-- 点也将通过 JavaScript 动态添加到这里  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recommended_playlists">
+                                <a class="recommended_title_btn" id="change-content"
+                                    href="#playlist_square">推荐歌单(可以点)</a>
+                                <div class="rec_box">
+                                    <a class="box playlist" href="#playlist_page">
+                                        <div class="top"></div>
+                                        <img src="" alt="">
+                                        <div class="bottom"></div>
+                                        <div class="playlistId"></div>
+                                    </a>
+                                    <a class="box playlist" href="#playlist_page">
+                                        <div class="top"></div>
+                                        <img src="" alt="">
+                                        <div class="bottom"></div>
+                                        <div class="playlistId"></div>
+                                    </a>
+                                    <a class="box playlist" href="#playlist_page">
+                                        <div class="top"></div>
+                                        <img src="" alt="">
+                                        <div class="bottom"></div>
+                                        <div class="playlistId"></div>
+                                    </a>
+                                    <a class="box playlist" href="#playlist_page">
+                                        <div class="top"></div>
+                                        <img src="" alt="">
+                                        <div class="bottom"></div>
+                                        <div class="playlistId"></div>
+                                    </a>
+                                    <a class="box playlist" href="#playlist_page">
+                                        <div class="top"></div>
+                                        <img src="" alt="">
+                                        <div class="bottom"></div>
+                                        <div class="playlistId"></div>
+                                    </a>
+                                    <a class="box playlist" href="#playlist_page">
+                                        <div class="top"></div>
+                                        <img src="" alt="">
+                                        <div class="bottom"></div>
+                                        <div class="playlistId"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playlist_square_rec_box page" id="playlist_square">
+                        </div>
+                        <div class="in_playlist page" id="playlist_page">
+                            <div class="top_section">
+                                <img src="" alt="" class="plylist_pic">
+                                <div class="right">
+                                    <div class="plylist_name">1</div>
+                                    <div class="brief_introduction">1
+                                    </div>
+                                    <div class="author">
+                                        <img src="" alt="作者" class="author_img">
+                                        <div class="author_name">1</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="song-list" id="songList_f"></div>
+                        </div>
+                        <div class="search_page page" id="search_page">
+                            <div class="song-list" id="songList_s"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="controls">
+                <button id="prevBtn"><ion-icon name="play-skip-back-outline"></ion-icon></button>
+                <button id="playPauseBtn">
+                    <ion-icon name="pause-outline"></ion-icon>
+                    <!-- <ion-icon name="play-outline"></ion-icon> -->
+                </button>
+                <button id="nextBtn"><ion-icon name="play-skip-forward-outline"></ion-icon></button>
+            </div>
+            <input type="range" id="progressBar" class="progress-bar" min="0" max="100" value="0">
+            <audio id="audioPlayer"></audio>
+        </div>
+    </div>
+    <!-- <script src="/js/my-login.js"></script>
+    <script src="/js/avater-nickname.js" type="module"></script>
+    <script src="/js/carousel.js" type="module"></script>
+    <script src="/js/playlists-box.js" type="module"></script>
+    <script src="/js/playlist_square.js"></script>
+    <script src="/js/search.js"></script> -->
+    <!-- <script>
+        // 获取弹窗和二维码图片元素
+        const modal = document.getElementById('qrModal');
+        const qrImg = document.getElementById('qrImg');
+        const closeBtn = document.querySelector('.close');
+
+        // 显示弹窗
+        function showModal() {
+            modal.style.display = 'block';
+        }
+
+        // 隐藏弹窗
+        function hideModal() {
+            modal.style.display = 'none';
+        }
+
+        // 关闭按钮点击事件
+        closeBtn.addEventListener('click', hideModal);
+
+        // 获取 key
+        function getQRKey() {
+            return fetch(`http://localhost:3000/login/qr/key?timestamp=${Date.now()}`)
+                .then(response => response.json())
+                .then(x => x.data.unikey);
+        }
+
+        // 获取二维码图片
+        function getQRCodeImage(key) {
+            return fetch(`http://localhost:3000/login/qr/create?key=${key}&timestamp=${Date.now()}&qrimg=1`)
+                .then(response => response.json())
+                .then(data => data.data.qrimg); // 假设返回的数据中有二维码图片的 URL
+        }
+
+        // 检查登录状态
+        function checkLoginStatus(key) {
+            return fetch(`http://localhost:3000/login/qr/check?key=${key}&timestamp=${Date.now()}`)
+                .then(response => response.json());
+        }
+
+        // 轮询检查登录状态
+        async function pollLoginStatus(key, onLoginSuccess) {
+            while (true) {
+                const statusData = await checkLoginStatus(key);
+                console.log('Login Status:', statusData);
+
+                if (statusData.code === 800) {
+                    console.log('二维码已过期，请重新获取二维码。');
+                    break;
+                } else if (statusData.code === 801) {
+                    console.log('等待扫码...');
+                } else if (statusData.code === 802) {
+                    console.log('已扫码，等待确认...');
+                } else if (statusData.code === 803) {
+                    console.log('授权登录成功！Cookies:', statusData.cookies);
+                    onLoginSuccess(); // 登录成功，触发回调
+                    hideModal(); // 登录成功后关闭弹窗
+                    break;
+                }
+
+                // 等待 2 秒后继续轮询
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+        }
+
+        // 主逻辑
+        async function main() {
+            try {
+                // 1. 获取 key
+                const key = await getQRKey();
+                console.log('QR Key:', key);
+
+                // 2. 获取二维码图片
+                const qrCodeUrl = await getQRCodeImage(key);
+                qrImg.src = qrCodeUrl; // 设置二维码图片
+                showModal(); // 显示弹窗
+
+                // 3. 开始轮询检查登录状态
+                await pollLoginStatus(key, () => {
+                    console.log('登录成功，开始加载其他脚本...');
+                    loadOtherScripts(); // 登录成功后加载其他脚本
+                });
+            } catch (error) {
+                console.error('Error in main process:', error);
+            }
+        }
+
+        // 加载其他脚本
+        function loadOtherScripts() {
+            const scripts = [
+                "/js/avater-nickname.js",
+                "/js/carousel.js",
+                "/js/playlists-box.js",
+                "/js/playlist_square.js",
+                "/js/search.js"
+            ];
+
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                if (src.endsWith('.js')) {
+                    script.type = 'module';
+                }
+                document.body.appendChild(script);
+            });
+        }
+
+        // 执行主逻辑
+        main();
+    </script> -->
+</body>
+
+</html>
