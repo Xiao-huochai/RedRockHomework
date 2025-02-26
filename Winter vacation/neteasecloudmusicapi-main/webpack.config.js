@@ -30,6 +30,8 @@ const { merge } = require("webpack-merge");
 const devConfig = require("./webpack.dev.js");
 const prodConfig = require("./webpack.prod.js");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ChangelogPlugin = require('./myPlugin/changeLogPlugin.js');
+
 const commonConfig = {
     entry: "./js/search.js",
     output: {
@@ -53,7 +55,8 @@ const commonConfig = {
         new HtmlWebpackPlugin({
             title: "webpack 案例",
             template: './html/main.html',
-        })
+        }),
+        new ChangelogPlugin(),
     ],
     devServer: {
         static: {
