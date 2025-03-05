@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const promise = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         console.log('once')
+        //         resolve('success')
+        //     }, 1000)
+        // })
+
+        // const start = Date.now()
+        // promise.then((res) => {
+        //     console.log(res, Date.now() - start)
+        // })
+        // promise.then((res) => {
+        //     console.log(res, Date.now() - start)
+        // })
+
+        // const p = function () {
+        //     return new Promise((resolve, reject) => {
+
+        //         const p1 = new Promise((resolve, reject) => {
+        //             setTimeout(() => {
+        //                 resolve(1)
+        //             }, 0)
+        //             resolve(2)
+        //         })
+        //         //同步3 end p1异步2 p异步4
+        //         p1.then((res) => {
+        //             console.log(res)
+        //         })
+
+        //         console.log(3)
+        //         resolve(4)
+        //     })
+        // }
+        // p().then(res => {
+        //     console.log(res)
+        // })
+        // console.log('end')
+        // function fn() {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             Math.random() < 0.5 ? resolve('resolve 001') : reject('reject 002')
+        //         }, 0)
+        //     })
+        // }
+
+        // async function get() {
+        //     let res = await fn()
+        //     console.log(res)
+        //     console.log(1212)
+        // }
+        // get()
+        // console.log(1)
+        // function fn() {
+        //     return new Promise((resolve, reject) => {
+        //         console.log(5)
+        //         resolve('resolve 001')
+        //         console.log(6)
+        //     })
+        // }
+
+        // async function get() {
+        //     console.log(2)
+        //     let res = await fn()
+        //     console.log(res)
+        //     console.log(3)
+        // }
+        // get()
+        // console.log(4)
+        // 1 2 5 6 resolve001  3 4
+        //await 是异步的同时会让出线程，
+        // fn() 执行后线程开始让出，
+        // 那么 await 的下面的代码不会立即执行会先到主栈的等待区，
+        // 主栈中 console.log(4) 执行后，再回来执行 await 处的代码。
+        //1 2 5 6 4 resolver001 3
+        // console.log(1)
+        // async function get() {
+        //     console.log(2)
+        //     let res = await 200
+        //     console.log(res)
+        //     console.log(3)
+        // }
+        // get()
+        // console.log(4)
+        //1 2 5 200 3
+        // async function async1() {
+        //     console.log('async1 start')
+        //     await new Promise(resolve => {
+        //         console.log('promise1')
+        //     })
+        //     console.log('async1 success')
+        //     return 'async1 end'
+        // }
+        // console.log('srcipt start')
+        // async1().then(res => console.log(res))
+        // console.log('srcipt end')
+        // async function async1() {
+        //     console.log('async1 start');
+        //     await async2();
+        //     console.log('async1 end');
+        // }
+
+        // async function async2() {
+        //     console.log('async2 start');
+        //     return new Promise((resolve, reject) => {
+        //         resolve();
+        //         console.log('async2 promise');
+        //     })
+        // }
+
+        // console.log('script start');
+        // setTimeout(function () {
+        //     console.log('setTimeout');
+        // }, 0);
+        // async1();
+        // new Promise(function (resolve) {
+        //     console.log('promise1');
+        //     resolve();
+        // }).then(function () {
+        //     console.log('promise2');
+        // }).then(function () {
+        //     console.log('promise3');
+        // });
+        // console.log('script end');
+        //script start
+        //s异步 async1 start async2 start async2 promise promise1 script end promise2 promise3
+        async function async1() {
+            console.log('async1 start');
+            await async2()
+            console.log('async end');
+        }
+
+        async function async2() {
+            return new Promise((resolve, reject) => {
+                console.log('async2 start');
+                resolve()
+            }).then(res => {
+                console.log('async2 end');
+            })
+        }
+
+        async1()
+
+        new Promise(resolve => {
+            console.log('Promise');
+            resolve()
+        }).then(res => {
+            console.log('Promise end');
+        })
+
+        console.log('script end');
+        //async1 start async2 start async2 end Promise script end Promise end
+    </script>
+</body>
+
+</html>
