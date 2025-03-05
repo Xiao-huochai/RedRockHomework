@@ -15,8 +15,14 @@ class ChangelogPlugin {
             // 使用 tap 方法注册一个回调函数，当 afterEmit 钩子触发时执行。
             // ChangelogPlugin 是插件的名称，compilation 是 Webpack 的编译对象，包含了当前编译的所有信息。
             // 获取 git log 信息
-            const changelog = execSync('git log --oneline -n 5').toString(); // 获取最近5条提交信息
-
+            // const changelog = execSync('git log --oneline -n 5').toString(); // 获取最近5条提交信息 且有哈希值（指的前面那串字符）效果如下
+            //3141d3d 打包练习
+            // a46617d 打包测试
+            // d7dadb3 打包测试
+            // eec915f delete
+            // 7feb7f2 sub
+            const changelog = execSync('git log --pretty=format:"%s"').toString(); // 获取全部提交消息
+            //移除哈希值
             // 生成 README 文件内容
             const readmeContent = `# Changelog\n\n${changelog}`;
 

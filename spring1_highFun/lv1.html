@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="myInput">
+    <div>实时效果：<div class="real_time"></div>
+    </div>
+    <div>防抖函数效果：<div class="debounce_result"></div>
+    </div>
+    <div>节流函数效果：<div class="throttle_result"></div>
+    </div>
+</body>
+<script>
+    const myInput = document.querySelector(".myInput");
+    const real_time = document.querySelector(".real_time");
+    const debounce_result = document.querySelector(".debounce_result")
+    const throttle_result = document.querySelector(".throttle_result");
+
+    //只执行一段时间内的最后一次
+    function debounce(fn, delay) {
+        let lastTime = 0;
+        let timer;//定时器，用于延迟执行最后一次
+        return function () {
+            const now = Date.now();
+            clearTimeout(timer);//每次触发都清楚上一个定时器
+            if (now - lastTime >= delay) {
+                fn.apply(this, arguments);
+                lastTime = now;
+            }
+
+            timer = setTimeout(() => {
+                fn.apply(this, arguments);
+                lastTime = Date.now();
+            }, delay);
+        }
+    }
+
+    //一段时间内只能执行一次
+    function throttle(fn, delay) {
+        let lastTime = 0;
+        return function () {
+            const now = Date.now();
+            if (now - lastTime >= delay) {
+                fn.apply(this, arguments);
+                lastTime = now;
+            }
+        }
+    }
+
+    function elementAction(targetElement) {
+        return (e) => {
+            targetElement.textContent = e.target.value;
+        }
+    }
+    // 实时显示输入内容
+    myInput.addEventListener('input', elementAction(real_time));
+    myInput.addEventListener('input', debounce(elementAction(debounce_result), 500));
+    myInput.addEventListener('input', throttle(elementAction(throttle_result), 1500))
+</script>
+
+</html>

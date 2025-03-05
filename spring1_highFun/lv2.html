@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const add10 = (x) => x + 10;
+    const mul10 = (x) => x * 10;
+    const add100 = (x) => x + 100;
+    // (10 + 100) * 10 + 10 = 1110
+    //compose(add10, mul10, add100)(10)
+    // function compose2(f, g) {
+    //     return function (x) {
+    //         return f(g(x));
+    //         // 先执行 g(x)，然后将结果传递给 f
+    //     };
+    // }
+    // const composed2 = compose2(mul10, add100);
+    // // f(g(x))
+    // console.log(composed2(2));
+    // 输出 18，等价于 double(square(3))
+
+    //compose的作用就是组合函数，将函数串联起来执行，前一个函数的输出值是后一个函数的输入值
+    //实现一个compose函数(提示reduce，有能力的话考虑一下兼容异步)
+
+    function compose(...funcs) {
+        return function (x) {
+            return funcs.reduceRight((result, fn) => fn(result), x);
+            //第一次调用 result=x; 第二次调用 result=f3(x); 第三次则为 f2(f3(3)) 第四次为 f1(f2(f3(3)))
+        };
+    }
+
+    const composed = compose(add10, mul10, add100)(10);
+    console.log(composed);
+
+</script>
+
+</html>

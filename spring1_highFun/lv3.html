@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function foo() {
+            console.log("start");
+            await bar();
+            console.log("end");
+        }
+
+        async function bar() {
+            console.log("bar");
+        }
+
+        console.log(1);//1 最先执行 毋庸置疑
+
+        setTimeout(() => {
+            console.log("time");
+        });
+
+        foo();
+
+        new Promise((resolve) => {
+            console.log("p1");
+            resolve();
+        }).then(() => {
+            console.log("p2");
+        });
+
+        console.log(2);//比出现 time的时机快 因为setTimeout
+
+        //给出代码执行流程分析和结果
+        //有排序 1 2 time 
+    </script>
+</body>
+
+</html>
