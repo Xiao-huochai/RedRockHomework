@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class MyPromise {
+            constructor(executor) {
+                this.state = 'pending'; // 初始状态 pending进行中 fulfilled 已完成 rejected已拒绝
+                this.value = undefined; // 成功时的值
+                this.reason = undefined; // 失败时的原因
+                this.onFulfilledCallbacks = []; // 成功回调队列
+                this.onRejectedCallbacks = []; // 失败回调队列
+
+                const resolve = (value) => {
+                    if (this.state === 'pending') //状态是进行中才能进入
+                    {
+                        this.state = 'fulfilled';
+                        this.value = value;
+                        //执行所有注册的成功回调函数，传入resolve的值
+                        this.onFulfilledCallbacks.forEach(callback => callback(this.value));
+                    }
+                };
+
+                const reject = (reason) => {
+                    if (this.state === 'pending') {
+                        this.state = 'rejected';
+                        this.reason = reason;
+                        this.onRejectedCallbacks.forEach(callback => callback(this.reason));
+                    }
+                };
+
+                try {
+                    executor(resolve, reject);
+                } catch (error) {
+                    reject(error);
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                const newPromise = new MyPromise((resolve, reject) => {
+                    if (this.state === 'fulfilled') {
+                        setTimeout(() => {
+                            try {
+                                const result = onFulfilled(this.value);
+                                resolve(result);
+                            } catch (error) {
+                                reject(error);
+                            }
+                        }, 0);
+                    } else if (this.state === 'rejected') {
+                        setTimeout(() => {
+                            try {
+                                const result = onRejected(this.reason);
+                                resolve(result);
+                            } catch (error) {
+                                reject(error);
+                            }
+                        }, 0);
+                    } else if (this.state === 'pending') {
+                        this.onFulfilledCallbacks.push((value) => {
+                            setTimeout(() => {
+                                try {
+                                    const result = onFulfilled(value);
+                                    resolve(result);
+                                } catch (error) {
+                                    reject(error);
+                                }
+                            }, 0);
+                        });
+
+                        this.onRejectedCallbacks.push((reason) => {
+                            setTimeout(() => {
+                                try {
+                                    const result = onRejected(reason);
+                                    resolve(result);
+                                } catch (error) {
+                                    reject(error);
+                                }
+                            }, 0);
+                        });
+                    }
+                });
+
+                return newPromise;
+            }
+
+            catch(onRejected) {
+                return this.then(null, onRejected);
+            }
+        }
+
+        const myPromise = new MyPromise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('Success!');
+            }, 1000);
+        });
+
+        myPromise.then((value) => {
+            console.log(value); // 1秒后输出 "Success!"
+            return 'hello';
+        })
+            .then((value) => {
+                console.log(value); // 输出 "hello"
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    </script>
+</body>
+
+</html>
